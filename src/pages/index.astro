@@ -1,127 +1,187 @@
 ---
-import '../styles/global.css';
+import "../styles/global.css";
 
-const siteName = 'mysbti fun';
-const siteUrl = 'https://mysbti.fun';
-
-const highlights = [
-  {
-    title: 'A live home for the domain',
-    text: 'A crisp launch page that makes mysbti.fun feel intentional from the first visit.',
-  },
-  {
-    title: 'Fast to edit',
-    text: 'All copy, colors, and sections live in one page, so you can change direction quickly.',
-  },
-  {
-    title: 'Deployment-ready',
-    text: 'Astro, Tailwind, sitemap support, and a clean structure for shipping to a real host.',
-  },
-];
-
-const stats = [
-  { value: '1', label: 'page', detail: 'Simple to maintain' },
-  { value: '0', label: 'lock-in', detail: 'Easy to reshape later' },
-  { value: '100%', label: 'responsive', detail: 'Works on mobile and desktop' },
-];
-
-const steps = [
-  'Replace the headline with your real product or project name.',
-  'Swap in your actual links, contact details, and launch CTA.',
-  'Deploy the built site to your host and point mysbti.fun to it.',
-];
+const siteName = "mysbti fun";
+const siteUrl = "https://mysbti.fun";
 ---
 
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-      name="description"
-      content="mysbti.fun is a polished launch page for a live domain, built with Astro and ready to deploy."
-    />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
-    <title>{siteName}</title>
-  </head>
-  <body>
-    <main class="page-shell">
-      <section class="hero">
-        <div class="hero-copy">
-          <p class="eyebrow">mysbti.fun</p>
-          <h1>Build a clean, live presence for whatever comes next.</h1>
-          <p class="lede">
-            This site gives your domain a professional front door today, with a layout that is
-            easy to update when the real product is ready.
-          </p>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>SBTI 人格测试 | 深度性格解码与灵魂侧写 - 官方入口</title>
+        <meta
+            name="description"
+            content="最火爆的SBTI人格测试，通过24个核心维度解析你的内在性格标签。比MBTI更真实，更具冲击力的性格实验。"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            :root {
+                --main-bg: #ffffff;
+                --accent: #00ff66;
+                --black: #000000;
+            }
+            body {
+                font-family: "Inter", system-ui, sans-serif;
+                background-color: var(--main-bg);
+                color: var(--black);
+            }
+            .neo-brutal {
+                border: 3px solid var(--black);
+                box-shadow: 5px 5px 0px 0px var(--black);
+                transition: all 0.2s;
+            }
+            .neo-brutal:hover {
+                transform: translate(-2px, -2px);
+                box-shadow: 7px 7px 0px 0px var(--black);
+            }
+            .heading-font {
+                font-family: "Archivo Black", sans-serif;
+            }
+        </style>
+    </head>
+    <body class="selection:bg-black selection:text-white">
+        <header
+            class="max-w-5xl mx-auto py-6 px-4 flex justify-between items-center"
+        >
+            <div
+                class="heading-font text-3xl tracking-tighter border-b-4 border-black"
+            >
+                MySBTI.Fun
+            </div>
+            <nav class="space-x-6 font-bold text-sm uppercase hidden md:block">
+                <a href="#about" class="hover:line-through">关于</a>
+                <a href="#faq" class="hover:line-through">常见问题</a>
+                <a
+                    href="#start"
+                    class="bg-black text-white px-4 py-2 neo-brutal">开始测试</a
+                >
+            </nav>
+        </header>
 
-          <div class="cta-row">
-            <a class="button button-primary" href="#start">See the structure</a>
-            <a class="button button-secondary" href={siteUrl} target="_blank" rel="noreferrer">
-              Visit the domain
-            </a>
-          </div>
+        <main class="max-w-5xl mx-auto px-4 py-16 text-center">
+            <h1
+                class="heading-font text-5xl md:text-8xl mb-6 uppercase leading-none"
+            >
+                <span class="line-through">MBTI已经过时</span>
+                <br />
+                <span class="bg-[#00FF66] px-4">SBTI来了！</span>
+            </h1>
+            <p
+                class="text-xl md:text-2xl font-medium max-w-2xl mx-auto mb-10 text-gray-800"
+            >
+                SBTI
+                是基于行为逻辑的性格重构测试。不提供虚伪的赞美，只揭示最真实的人格底色。
+            </p>
+            <div
+                id="start"
+                class="flex flex-col md:flex-row gap-4 justify-center items-center"
+            >
+                <button
+                    class="bg-[#00FF66] text-black heading-font text-2xl py-6 px-12 neo-brutal w-full md:w-auto"
+                >
+                    立即进入测试
+                </button>
+                <span
+                    class="text-sm font-bold text-gray-500 underline underline-offset-4"
+                    >耗时约 5 分钟 / 免费</span
+                >
+            </div>
+        </main>
 
-          <dl class="stats" aria-label="Site stats">
-            {stats.map((stat) => (
-              <div class="stat-card">
-                <dt>{stat.label}</dt>
-                <dd>
-                  <span>{stat.value}</span>
-                  <small>{stat.detail}</small>
-                </dd>
-              </div>
-            ))}
-          </dl>
-        </div>
+        <section
+            id="about"
+            class="max-w-5xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-3 gap-6"
+        >
+            <div class="bg-white p-6 neo-brutal border-blue-500">
+                <h3 class="heading-font text-xl mb-2">01. 深度算法</h3>
+                <p class="text-sm">
+                    基于最新的社会行为学模型，规避传统测试的自我美化偏见。
+                </p>
+            </div>
+            <div class="bg-white p-6 neo-brutal border-purple-500">
+                <h3 class="heading-font text-xl mb-2">02. 视觉侧写</h3>
+                <p class="text-sm">
+                    生成独一无二的 Neo-Brutalism 风格性格名片，适配社交分享。
+                </p>
+            </div>
+            <div class="bg-white p-6 neo-brutal border-yellow-500">
+                <h3 class="heading-font text-xl mb-2">03. 匿名隐私</h3>
+                <p class="text-sm">
+                    我们不收集个人信息，所有计算均在浏览器本地完成。
+                </p>
+            </div>
+        </section>
 
-        <aside class="hero-panel" aria-label="Launch panel">
-          <div class="panel-badge">Ready to deploy</div>
-          <h2>What this site does right now</h2>
-          <p>
-            It makes the domain feel real, gives you a strong first impression, and leaves room
-            for your actual content when you are ready.
-          </p>
-          <ul class="checklist">
-            <li>Clear branding and readable typography</li>
-            <li>Responsive sections with balanced spacing</li>
-            <li>Easy replacement points for future content</li>
-          </ul>
-        </aside>
-      </section>
+        <section id="faq" class="max-w-3xl mx-auto px-4 py-20">
+            <h2
+                class="heading-font text-4xl mb-10 text-center underline decoration-[#00FF66]"
+            >
+                F.A.Q.
+            </h2>
+            <div class="space-y-6">
+                <details
+                    class="group bg-white border-2 border-black p-4 open:bg-gray-50 transition-colors"
+                >
+                    <summary
+                        class="list-none font-black text-lg cursor-pointer flex justify-between items-center"
+                    >
+                        什么是 SBTI 人格测试？
+                        <span class="group-open:rotate-45 transition-transform"
+                            >+</span
+                        >
+                    </summary>
+                    <p class="mt-4 text-gray-700 leading-relaxed">
+                        比 MBTI 更丰富更符合当代宝宝的人格测试！
+                    </p>
+                </details>
 
-      <section class="section-grid" aria-labelledby="highlights-title">
-        <div class="section-heading">
-          <p class="eyebrow">Why it works</p>
-          <h2 id="highlights-title">A practical starting point for a real domain</h2>
-        </div>
+                <details
+                    class="group bg-white border-2 border-black p-4 open:bg-gray-50 transition-colors"
+                >
+                    <summary
+                        class="list-none font-black text-lg cursor-pointer flex justify-between items-center"
+                    >
+                        SBTI人格测试结果准确吗？
+                        <span class="group-open:rotate-45 transition-transform"
+                            >+</span
+                        >
+                    </summary>
+                    <p class="mt-4 text-gray-700 leading-relaxed">Maybe！</p>
+                </details>
 
-        <div class="feature-grid">
-          {highlights.map((item) => (
-            <article class="feature-card">
-              <h3>{item.title}</h3>
-              <p>{item.text}</p>
-            </article>
-          ))}
-        </div>
-      </section>
+                <details
+                    class="group bg-white border-2 border-black p-4 open:bg-gray-50 transition-colors"
+                >
+                    <summary
+                        class="list-none font-black text-lg cursor-pointer flex justify-between items-center"
+                    >
+                        如何分享我的 SBTI 报告？
+                        <span class="group-open:rotate-45 transition-transform"
+                            >+</span
+                        >
+                    </summary>
+                    <p class="mt-4 text-gray-700 leading-relaxed">
+                        宝宝。测试完成后，请直接在结果页面截图
+                    </p>
+                </details>
+            </div>
+        </section>
 
-      <section class="section-grid split" id="start" aria-labelledby="next-title">
-        <div class="section-heading">
-          <p class="eyebrow">Next steps</p>
-          <h2 id="next-title">Use this page as the foundation for the real site</h2>
-        </div>
-
-        <ol class="steps">
-          {steps.map((step, index) => (
-            <li>
-              <span>{index + 1}</span>
-              <p>{step}</p>
-            </li>
-          ))}
-        </ol>
-      </section>
-    </main>
-  </body>
+        <footer class="bg-black text-white py-12 px-4 mt-10">
+            <div
+                class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8"
+            >
+                <div class="heading-font text-2xl uppercase">SBTI.LAB 2026</div>
+                <div class="text-gray-400 text-xs text-center md:text-right">
+                    <p>本测试仅供娱乐与自我探索，不构成任何医疗或职业建议。</p>
+                    <p class="mt-2">© 2026 SBTI PROJECT. NO RIGHTS RESERVED.</p>
+                </div>
+            </div>
+        </footer>
+    </body>
 </html>
