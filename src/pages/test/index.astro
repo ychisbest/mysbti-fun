@@ -203,8 +203,13 @@ import "../../styles/global.css";
         }
 
         .option:has(input:checked) {
-            background: #edfff4;
+            background: #7dffab;
             box-shadow: 4px 4px 0 0 var(--line);
+        }
+
+        .option:has(input:checked) .option-code {
+            background: #111111;
+            color: #ffffff;
         }
 
         .option input {
@@ -256,6 +261,14 @@ import "../../styles/global.css";
         .progress-text {
             margin-top: 10px;
             font-weight: 800;
+        }
+
+        .pending-questions {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 2px solid var(--line);
+            font-weight: 700;
+            line-height: 1.65;
         }
 
         .btn-row,
@@ -408,7 +421,7 @@ import "../../styles/global.css";
                 <a href="/" class="text-link">返回首页</a>
             </header>
 
-            <section id="intro" class="screen active">
+            <section id="intro" class="screen">
                 <div class="panel stack">
                     <div class="eyebrow">SBTI TEST / SINGLE COLUMN</div>
                     <h1 class="intro-title">
@@ -470,6 +483,9 @@ import "../../styles/global.css";
                         <div class="test-copy" id="testHint">
                             全选完才会放行。世界已经够乱了，起码把题做完整。
                         </div>
+                        <div id="pendingQuestions" class="pending-questions">
+                            当前未完成：第 1 题至第 31 题
+                        </div>
                     </div>
 
                     <div id="questionList" class="question-list"></div>
@@ -479,7 +495,7 @@ import "../../styles/global.css";
                             提交并查看结果
                         </button>
                         <button id="backIntroBtn" class="btn-secondary">
-                            回到开头
+                            返回首页
                         </button>
                     </div>
                 </div>
@@ -555,7 +571,7 @@ import "../../styles/global.css";
                             重新测试
                         </button>
                         <button id="toTopBtn" class="btn-primary">
-                            回到开头
+                            返回首页
                         </button>
                     </div>
                 </div>
@@ -1336,6 +1352,7 @@ import "../../styles/global.css";
         const progressText = document.getElementById("progressText");
         const submitBtn = document.getElementById("submitBtn");
         const testHint = document.getElementById("testHint");
+        const pendingQuestions = document.getElementById("pendingQuestions");
 
         function showScreen(name) {
             Object.entries(screens).forEach(([key, el]) => {
@@ -1429,6 +1446,10 @@ import "../../styles/global.css";
             const done = visibleQuestions.filter(
                 (q) => app.answers[q.id] !== undefined,
             ).length;
+            const pending = visibleQuestions
+                .map((q, index) => ({ q, index: index + 1 }))
+                .filter(({ q }) => app.answers[q.id] === undefined)
+                .map(({ index }) => index);
             const percent = total ? (done / total) * 100 : 0;
             progressBar.style.width = `${percent}%`;
             progressText.textContent = `${done} / ${total}`;
@@ -1437,6 +1458,9 @@ import "../../styles/global.css";
             testHint.textContent = complete
                 ? "都做完了。现在可以把你的电子魂魄交给结果页审判。"
                 : "全选完才会放行。世界已经够乱了，起码把题做完整。";
+            pendingQuestions.textContent = complete
+                ? "当前未完成：没有，已经全做完了。"
+                : `当前未完成：第 ${pending.join("、")} 题`;
         }
 
         function sumToLevel(score) {
@@ -1615,7 +1639,7 @@ import "../../styles/global.css";
             .addEventListener("click", () => startTest(false));
         document
             .getElementById("backIntroBtn")
-            .addEventListener("click", () => showScreen("intro"));
+            .addEventListener("click", () => window.location.href = "/");
         document
             .getElementById("submitBtn")
             .addEventListener("click", renderResult);
@@ -1624,6 +1648,8 @@ import "../../styles/global.css";
             .addEventListener("click", () => startTest(false));
         document
             .getElementById("toTopBtn")
-            .addEventListener("click", () => showScreen("intro"));
+            .addEventListener("click", () => window.location.href = "/");
+
+        startTest(false);
     </script>
 </SiteLayout>
