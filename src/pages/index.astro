@@ -1,17 +1,127 @@
 ---
+import '../styles/global.css';
 
+const siteName = 'mysbti fun';
+const siteUrl = 'https://mysbti.fun';
+
+const highlights = [
+  {
+    title: 'A live home for the domain',
+    text: 'A crisp launch page that makes mysbti.fun feel intentional from the first visit.',
+  },
+  {
+    title: 'Fast to edit',
+    text: 'All copy, colors, and sections live in one page, so you can change direction quickly.',
+  },
+  {
+    title: 'Deployment-ready',
+    text: 'Astro, Tailwind, sitemap support, and a clean structure for shipping to a real host.',
+  },
+];
+
+const stats = [
+  { value: '1', label: 'page', detail: 'Simple to maintain' },
+  { value: '0', label: 'lock-in', detail: 'Easy to reshape later' },
+  { value: '100%', label: 'responsive', detail: 'Works on mobile and desktop' },
+];
+
+const steps = [
+  'Replace the headline with your real product or project name.',
+  'Swap in your actual links, contact details, and launch CTA.',
+  'Deploy the built site to your host and point mysbti.fun to it.',
+];
 ---
 
+<!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="mysbti.fun is a polished launch page for a live domain, built with Astro and ready to deploy."
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <title>{siteName}</title>
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">mysbti.fun</p>
+          <h1>Build a clean, live presence for whatever comes next.</h1>
+          <p class="lede">
+            This site gives your domain a professional front door today, with a layout that is
+            easy to update when the real product is ready.
+          </p>
+
+          <div class="cta-row">
+            <a class="button button-primary" href="#start">See the structure</a>
+            <a class="button button-secondary" href={siteUrl} target="_blank" rel="noreferrer">
+              Visit the domain
+            </a>
+          </div>
+
+          <dl class="stats" aria-label="Site stats">
+            {stats.map((stat) => (
+              <div class="stat-card">
+                <dt>{stat.label}</dt>
+                <dd>
+                  <span>{stat.value}</span>
+                  <small>{stat.detail}</small>
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+
+        <aside class="hero-panel" aria-label="Launch panel">
+          <div class="panel-badge">Ready to deploy</div>
+          <h2>What this site does right now</h2>
+          <p>
+            It makes the domain feel real, gives you a strong first impression, and leaves room
+            for your actual content when you are ready.
+          </p>
+          <ul class="checklist">
+            <li>Clear branding and readable typography</li>
+            <li>Responsive sections with balanced spacing</li>
+            <li>Easy replacement points for future content</li>
+          </ul>
+        </aside>
+      </section>
+
+      <section class="section-grid" aria-labelledby="highlights-title">
+        <div class="section-heading">
+          <p class="eyebrow">Why it works</p>
+          <h2 id="highlights-title">A practical starting point for a real domain</h2>
+        </div>
+
+        <div class="feature-grid">
+          {highlights.map((item) => (
+            <article class="feature-card">
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="section-grid split" id="start" aria-labelledby="next-title">
+        <div class="section-heading">
+          <p class="eyebrow">Next steps</p>
+          <h2 id="next-title">Use this page as the foundation for the real site</h2>
+        </div>
+
+        <ol class="steps">
+          {steps.map((step, index) => (
+            <li>
+              <span>{index + 1}</span>
+              <p>{step}</p>
+            </li>
+          ))}
+        </ol>
+      </section>
+    </main>
+  </body>
 </html>
