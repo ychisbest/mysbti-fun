@@ -267,8 +267,47 @@ import "../../styles/global.css";
             margin-top: 12px;
             padding-top: 12px;
             border-top: 2px solid var(--line);
-            font-weight: 700;
-            line-height: 1.65;
+            display: grid;
+            gap: 10px;
+        }
+
+        .pending-label {
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: var(--muted);
+        }
+
+        .pending-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .pending-chip {
+            min-width: 2.2rem;
+            height: 2.2rem;
+            padding: 0 8px;
+            border: 2px solid var(--line);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            background: #f3f0e9;
+        }
+
+        .pending-chip.done {
+            background: var(--accent);
+        }
+
+        .pending-chip.current {
+            background: #ffffff;
+        }
+
+        .pending-chip.empty {
+            width: 100%;
+            justify-content: flex-start;
+            background: #f7fff9;
+            font-weight: 800;
         }
 
         .btn-row,
@@ -484,7 +523,12 @@ import "../../styles/global.css";
                             全选完才会放行。世界已经够乱了，起码把题做完整。
                         </div>
                         <div id="pendingQuestions" class="pending-questions">
-                            当前未完成：第 1 题至第 31 题
+                            <div class="pending-label">未完成题目</div>
+                            <div class="pending-grid">
+                                <span class="pending-chip current">1</span>
+                                <span class="pending-chip">2</span>
+                                <span class="pending-chip">3</span>
+                            </div>
                         </div>
                     </div>
 
@@ -1458,9 +1502,28 @@ import "../../styles/global.css";
             testHint.textContent = complete
                 ? "都做完了。现在可以把你的电子魂魄交给结果页审判。"
                 : "全选完才会放行。世界已经够乱了，起码把题做完整。";
-            pendingQuestions.textContent = complete
-                ? "当前未完成：没有，已经全做完了。"
-                : `当前未完成：第 ${pending.join("、")} 题`;
+            pendingQuestions.innerHTML = complete
+                ? `
+                    <div class="pending-label">未完成题目</div>
+                    <div class="pending-grid">
+                        <span class="pending-chip empty">没有，已经全做完了。</span>
+                    </div>
+                `
+                : `
+                    <div class="pending-label">未完成题目</div>
+                    <div class="pending-grid">
+                        ${visibleQuestions
+                            .map((q, index) => {
+                                const number = index + 1;
+                                const answered = app.answers[q.id] !== undefined;
+                                const className = answered
+                                    ? "pending-chip done"
+                                    : "pending-chip current";
+                                return `<span class="${className}">${number}</span>`;
+                            })
+                            .join("")}
+                    </div>
+                `;
         }
 
         function sumToLevel(score) {
