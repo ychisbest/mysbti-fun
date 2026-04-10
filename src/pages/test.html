@@ -301,6 +301,34 @@
       line-height: 1.7;
     }
 
+    .question-status {
+      margin-top: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .question-dot {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .question-dot.done {
+      background: #7fa586;
+      border-color: #7fa586;
+      color: #fff;
+    }
+
     .result-hero {
       display: grid;
       grid-template-columns: 1.2fr 0.8fr;
@@ -722,6 +750,7 @@
             <button id="submitBtn" class="btn-primary" disabled>提交并查看结果</button>
           </div>
         </div>
+        <div id="questionStatus" class="question-status" aria-label="答题状态"></div>
       </div>
     </section>
 
@@ -1490,6 +1519,7 @@
     const progressText = document.getElementById('progressText');
     const submitBtn = document.getElementById('submitBtn');
     const testHint = document.getElementById('testHint');
+    const questionStatus = document.getElementById('questionStatus');
 
     function showScreen(name) {
       Object.entries(screens).forEach(([key, el]) => {
@@ -1582,6 +1612,11 @@
       testHint.textContent = complete
         ? '都做完了。现在可以把你的电子魂魄交给结果页审判。'
         : '全选完才会放行。世界已经够乱了，起码把题做完整。';
+
+      questionStatus.innerHTML = visibleQuestions.map((q, index) => {
+        const doneClass = app.answers[q.id] !== undefined ? 'done' : '';
+        return `<span class="question-dot ${doneClass}" title="第 ${index + 1} 题">${index + 1}</span>`;
+      }).join('');
     }
 
     function sumToLevel(score) {
