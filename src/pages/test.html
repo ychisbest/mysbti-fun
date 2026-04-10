@@ -685,7 +685,7 @@
 </head>
 <body>
   <div class="shell">
-    <section id="intro" class="screen active">
+    <section id="intro" class="screen">
       <div class="hero card hero-minimal">
         <h1>MBTI已经过时，SBTI来了。</h1>
         <div class="hero-actions hero-actions-single">
@@ -1741,6 +1741,8 @@
     document.getElementById('submitBtn').addEventListener('click', renderResult);
     document.getElementById('restartBtn').addEventListener('click', () => startTest(false));
     document.getElementById('toTopBtn').addEventListener('click', () => showScreen('intro'));
+
+    startTest(false);
   </script>
 
 </body>
