@@ -1,36 +1,46 @@
 ---
 import SiteLayout from "../layouts/SiteLayout.astro";
+import { sbtiTypes } from "../data/sbti-types";
 ---
 
 <SiteLayout
     title="SBTI 人格测试 | 深度性格解码与灵魂侧写 - 官方入口"
     description="最火爆的SBTI人格测试，通过24个核心维度解析你的内在性格标签。比MBTI更真实，更具冲击力的性格实验。"
 >
-        <style>
-            :root {
-                --main-bg: #ffffff;
-                --accent: #00ff66;
-                --black: #000000;
-            }
-            body {
-                font-family: "Inter", system-ui, sans-serif;
-                background-color: var(--main-bg);
-                color: var(--black);
-            }
-            .neo-brutal {
-                border: 3px solid var(--black);
-                box-shadow: 5px 5px 0px 0px var(--black);
-                transition: all 0.2s;
-            }
-            .neo-brutal:hover {
-                transform: translate(-2px, -2px);
-                box-shadow: 7px 7px 0px 0px var(--black);
-            }
-            .heading-font {
-                font-family: "Archivo Black", sans-serif;
-            }
-        </style>
-        <div class="selection:bg-black selection:text-white">
+    <style>
+        :root {
+            --main-bg: #ffffff;
+            --accent: #00ff66;
+            --black: #000000;
+        }
+        body {
+            font-family: "Inter", system-ui, sans-serif;
+            background-color: var(--main-bg);
+            color: var(--black);
+        }
+        .neo-brutal {
+            border: 3px solid var(--black);
+            box-shadow: 5px 5px 0px 0px var(--black);
+            transition: all 0.2s;
+        }
+        .neo-brutal:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 7px 7px 0px 0px var(--black);
+        }
+        .heading-font {
+            font-family: "Archivo Black", sans-serif;
+        }
+        .gallery-card-image {
+            border-bottom: 3px solid var(--black);
+        }
+        .gallery-intro {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    </style>
+    <div class="selection:bg-black selection:text-white">
         <header
             class="max-w-5xl mx-auto py-6 px-4 flex justify-between items-center"
         >
@@ -43,8 +53,12 @@ import SiteLayout from "../layouts/SiteLayout.astro";
             </a>
             <nav class="space-x-6 font-bold text-sm uppercase hidden md:block">
                 <a href="#about" class="hover:line-through">关于</a>
+                <a href="#gallery" class="hover:line-through">画廊</a>
                 <a href="#faq" class="hover:line-through">常见问题</a>
-                <a href="/test/" class="bg-black text-white px-4 py-2 neo-brutal">开始测试</a>
+                <a
+                    href="/test/"
+                    class="bg-black text-white px-4 py-2 neo-brutal">开始测试</a
+                >
             </nav>
         </header>
 
@@ -96,6 +110,65 @@ import SiteLayout from "../layouts/SiteLayout.astro";
             <div class="bg-white p-6 neo-brutal border-yellow-500">
                 <h3 class="heading-font text-xl mb-2">03. 不问身份</h3>
                 <p class="text-sm">不记你是谁，只记你有多离谱。</p>
+            </div>
+        </section>
+        <section id="gallery" class="max-w-6xl mx-auto px-4 py-20">
+            <div
+                class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10 text-left"
+            >
+                <div>
+                    <p
+                        class="font-black uppercase text-sm tracking-[0.25em] text-gray-500 mb-3"
+                    >
+                        SBTI Gallery
+                    </p>
+                    <h2 class="heading-font text-4xl md:text-6xl leading-none">
+                        sbti 画廊
+                    </h2>
+                </div>
+                <p
+                    class="max-w-xl text-base md:text-lg font-medium text-gray-700"
+                >
+                    全部SBTI人格海报都放在这里。先看脸
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5">
+                {
+                    sbtiTypes.map((type) => (
+                        <a
+                            href={`/gallery/${type.slug}/`}
+                            class="group bg-white neo-brutal overflow-hidden text-left"
+                        >
+                            <div class="aspect-[4/5] overflow-hidden gallery-card-image">
+                                <img
+                                    src={type.image}
+                                    alt={`${type.code} ${type.cn}`}
+                                    class="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-200"
+                                    loading="lazy"
+                                />
+                            </div>
+                            <div class="p-4">
+                                <div class="flex items-start justify-between gap-3">
+                                    <div>
+                                        <h3 class="heading-font text-2xl leading-none break-words">
+                                            {type.code}
+                                        </h3>
+                                        <p class="mt-1 font-bold text-sm text-gray-700">
+                                            {type.cn}
+                                        </p>
+                                    </div>
+                                    <span class="text-xs font-black uppercase border-2 border-black px-2 py-1">
+                                        详情
+                                    </span>
+                                </div>
+                                <p class="mt-3 text-sm leading-6 text-gray-700 gallery-intro">
+                                    {type.intro}
+                                </p>
+                            </div>
+                        </a>
+                    ))
+                }
             </div>
         </section>
 
@@ -167,5 +240,5 @@ import SiteLayout from "../layouts/SiteLayout.astro";
                 </div>
             </div>
         </footer>
-        </div>
+    </div>
 </SiteLayout>

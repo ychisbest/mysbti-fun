@@ -1,0 +1,99 @@
+---
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import { sbtiTypes, sbtiTypeMap } from "../../data/sbti-types";
+
+export function getStaticPaths() {
+  return sbtiTypes.map((type) => ({
+    params: { slug: type.slug },
+    props: { type },
+  }));
+}
+
+const { slug } = Astro.params;
+const type = Astro.props.type ?? (slug ? sbtiTypeMap[slug] : undefined);
+
+if (!type) {
+  return Astro.redirect("/");
+}
+---
+
+<SiteLayout
+  title={`${type.code} ${type.cn} | SBTI 人格图鉴`}
+  description={`${type.code}（${type.cn}）的人格详情、海报和完整介绍。`}
+>
+  <style>
+    :root {
+      --main-bg: #fffef4;
+      --accent: #00ff66;
+      --black: #000000;
+    }
+
+    body {
+      font-family: "Inter", system-ui, sans-serif;
+      background:
+        linear-gradient(180deg, #fffef4 0%, #f4ffd7 100%);
+      color: var(--black);
+    }
+
+    .neo-brutal {
+      border: 3px solid var(--black);
+      box-shadow: 6px 6px 0 0 var(--black);
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .neo-brutal:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 8px 8px 0 0 var(--black);
+    }
+
+    .heading-font {
+      font-family: "Archivo Black", sans-serif;
+    }
+  </style>
+
+  <div class="selection:bg-black selection:text-white min-h-screen">
+    <header class="max-w-6xl mx-auto px-4 py-6 flex items-center justify-between gap-4">
+      <a href="/" class="heading-font text-3xl tracking-tighter border-b-4 border-black">
+        MySBTI.Fun
+      </a>
+      <div class="flex gap-3 flex-wrap justify-end">
+        <a href="/#gallery" class="neo-brutal bg-white px-4 py-2 font-black uppercase text-sm">返回画廊</a>
+        <a href="/test/" class="neo-brutal bg-black text-white px-4 py-2 font-black uppercase text-sm">开始测试</a>
+      </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-10 md:py-16">
+      <section class="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-8 items-start">
+        <div class="neo-brutal bg-white p-4 md:p-6">
+          <img
+            src={type.image}
+            alt={`${type.code} ${type.cn}`}
+            class="w-full h-auto block border-2 border-black"
+            loading="eager"
+          />
+        </div>
+
+        <div class="space-y-5">
+          <div class="inline-flex items-center gap-2 neo-brutal bg-[#00FF66] px-4 py-2 font-black uppercase text-sm">
+            <span>SBTI 画廊</span>
+            <span>{type.code}</span>
+          </div>
+
+          <div class="neo-brutal bg-white p-6 md:p-8">
+            <p class="text-sm uppercase font-black tracking-[0.2em] text-gray-600">人格详情</p>
+            <h1 class="heading-font text-4xl md:text-6xl leading-none mt-3 break-words">
+              {type.code}
+            </h1>
+            <p class="text-2xl font-black mt-3">{type.cn}</p>
+            <p class="mt-5 text-lg md:text-2xl font-bold leading-relaxed">“{type.intro}”</p>
+          </div>
+
+          <article class="neo-brutal bg-white p-6 md:p-8">
+            <h2 class="heading-font text-2xl md:text-3xl mb-4">完整介绍</h2>
+            <p class="text-base md:text-lg leading-8 text-gray-800">{type.desc}</p>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+</SiteLayout>
