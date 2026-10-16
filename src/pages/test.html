@@ -3,7 +3,11 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>SBTI 人格测试</title>
+        <title>开始 SBTI 测试｜在线免费人格测验（约 5 分钟）</title>
+        <meta
+            name="description"
+            content="在线开始 SBTI 人格测试：免费、约 5 分钟、中文题目。娱乐向性格海报，非官方 MBTI，不构成医疗或职业建议。"
+        />
         <style>
             :root {
                 --bg: #f6faf6;
@@ -786,10 +790,11 @@
         <div class="shell">
             <section id="intro" class="screen">
                 <div class="hero card hero-minimal">
-                    <h1>MBTI已经过时，SBTI来了。</h1>
+                    <h1>开始 SBTI 在线测试</h1>
+                    <p class="sub">免费 · 约 5 分钟 · 中文娱乐人格标签（非官方 MBTI）</p>
                     <div class="hero-actions hero-actions-single">
                         <button id="startBtn" class="btn-primary">
-                            开始测试
+                            立即开始测试
                         </button>
                     </div>
                     <div
@@ -807,6 +812,9 @@
                         </span>
                         <span> 托管：Cloudflare (免费) </span>
                         <span> 域名：Spaceship (自费) </span>
+                        <span style="margin-top: 0.75rem; color: var(--muted); font-size: 12px; line-height: 1.6;">
+                            仅供娱乐与自我探索，不构成医疗或职业建议；亦非官方 MBTI。
+                        </span>
                     </div>
                 </div>
             </section>
@@ -830,7 +838,7 @@
                         </div>
                         <div style="display: flex; gap: 12px; flex-wrap: wrap">
                             <button id="backIntroBtn" class="btn-secondary">
-                                返回首页
+                                返回介绍
                             </button>
                             <button id="submitBtn" class="btn-primary" disabled>
                                 提交并查看结果
@@ -912,13 +920,17 @@
                         </details>
                     </div>
 
+                    <p style="margin: 12px 0 0; font-size: 14px; color: var(--muted);">
+                        想对照其他人设？去
+                        <a href="/#gallery" style="color: var(--accent-strong); font-weight: 700;">人格画廊</a>
+                    </p>
                     <div class="result-actions">
                         <div style="display: flex; gap: 12px; flex-wrap: wrap">
                             <button id="restartBtn" class="btn-secondary">
                                 重新测试
                             </button>
                             <button id="toTopBtn" class="btn-primary">
-                                回到首页
+                                返回 SBTI 首页
                             </button>
                         </div>
                     </div>
@@ -1356,7 +1368,7 @@
                 "LOVE-R": {
                     code: "LOVE-R",
                     cn: "多情者",
-                    intro: "爱意太满，现实显得有点贫瘠。",
+                    intro: "LOVE-R 多情者：爱意太满，现实显得有点贫瘠。",
                     desc: "LOVE-R人格像远古神话时代幸存至今的珍稀物种，其存在概率比你在马桶里钓到作者胳膊的概率还低。您简直是这个钢铁森林时代最后的、也是最不合时宜的吟游诗人。因为您的情感处理器不是二进制的，而是彩虹制的。一片落叶，在常人眼里只是“秋天来了”，在LOVE-R眼中，则是一场关于轮回、牺牲与无言之爱的十三幕悲喜剧。您内心世界像一座永不关门的主题公园，一生都在寻找那个能看懂园区地图、并愿意陪你坐旋转木马直到宇宙尽头的灵魂伴侣。",
                 },
                 MUM: {
@@ -1398,7 +1410,7 @@
                 "THIN-K": {
                     code: "THIN-K",
                     cn: "思考者",
-                    intro: "已深度思考100s。",
+                    intro: "THIN-K 思考者：已深度思考 100s。",
                     desc: "经研究发现，THIN-K人格的大脑构造与常人有根本性不同。正如名称所示，您的大脑长时间处于思考状态。您十分会审判信息，注重论点、论据、逻辑推理、潜在偏见，乃至“作者本人三代以内思想背景调查报告”的全套材料。在这个信息爆炸的时代，您绝不会轻易盲从，会在关系中衡量利弊，也十分捍卫自己的自我空间。当别人看到您独处时在发呆？愚蠢，那不是发呆，那是您的大脑正在对今天接收到的所有信息进行分类、归档和销毁。",
                 },
                 SHIT: {
@@ -2017,7 +2029,9 @@
                 .addEventListener("click", () => startTest(false));
             document
                 .getElementById("toTopBtn")
-                .addEventListener("click", () => showScreen("intro"));
+                .addEventListener("click", () => {
+                    window.location.href = "/";
+                });
 
             startTest(false);
         </script>
